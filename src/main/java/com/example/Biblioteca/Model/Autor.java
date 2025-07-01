@@ -9,9 +9,6 @@ import java.util.List;
 @Entity
 public class Autor extends Persona {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
     private List<Libro> libros;
@@ -27,13 +24,6 @@ public class Autor extends Persona {
                 ///GETTER Y SETTERS
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public List<Libro> getLibros() {
         return libros;

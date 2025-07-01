@@ -21,7 +21,13 @@ public class Libro {
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
-    @OneToMany(mappedBy = "libros", cascade = CascadeType.ALL)
+
+    ///En caso de que sea vendido
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private List<Prestamo> prestamos;
 
     public Libro(String titulo, int anioPublicacion, String isbn, Genero genero, List<Prestamo> prestamos, Autor autor) {
