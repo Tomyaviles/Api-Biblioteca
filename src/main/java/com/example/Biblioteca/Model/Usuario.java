@@ -1,20 +1,23 @@
 package com.example.Biblioteca.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Usuario extends Persona{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Prestamo> prestamos;
     private String telefono;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Libro> misLibros;
 
 

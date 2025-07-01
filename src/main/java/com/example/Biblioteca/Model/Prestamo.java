@@ -1,11 +1,10 @@
 package com.example.Biblioteca.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
 public class Prestamo {
 
     @Id
@@ -15,7 +14,12 @@ public class Prestamo {
     private LocalDate fechPrestamo;
     private LocalDate fechaDevolucion;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "libro_id")
     private Libro libro;
 
     private boolean devolucion;

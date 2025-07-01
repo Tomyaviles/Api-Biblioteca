@@ -1,7 +1,10 @@
 package com.example.Biblioteca.Model;
 
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
+@Entity
 public class Persona {
 
     private String nombre;

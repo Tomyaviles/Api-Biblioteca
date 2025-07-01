@@ -1,9 +1,10 @@
 package com.example.Biblioteca.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
 public class Libro {
 
     @Id
@@ -16,8 +17,24 @@ public class Libro {
 
     private Genero genero;
 
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
     private Autor autor;
 
+    @OneToMany(mappedBy = "libros", cascade = CascadeType.ALL)
+    private List<Prestamo> prestamos;
+
+    public Libro(String titulo, int anioPublicacion, String isbn, Genero genero, List<Prestamo> prestamos, Autor autor) {
+        this.titulo = titulo;
+        AnioPublicacion = anioPublicacion;
+        this.isbn = isbn;
+        this.genero = genero;
+        this.prestamos = prestamos;
+        this.autor = autor;
+    }
+
+    public Libro() {
+    }
 
     public long getId() {
         return id;
