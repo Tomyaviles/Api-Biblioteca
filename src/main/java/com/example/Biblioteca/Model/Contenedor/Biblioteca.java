@@ -11,10 +11,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Entity
 public class Biblioteca {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     private List<Libro> libros;
 
     public Biblioteca() {
@@ -29,20 +34,6 @@ public class Biblioteca {
 
 
     ///METODOS
-/*
-    ///Agregar libro
-   public void AgregarLibro(Libro libro) {
-        libros.put(libro.getTitulo(), libro);
-   }
-
-
-   ///Buscar por isbn
-    public Libro BuscarPorIsbn(String isbn) {
-        return libros.get(isbn);
-    }
-
-
-*/
 
 
     

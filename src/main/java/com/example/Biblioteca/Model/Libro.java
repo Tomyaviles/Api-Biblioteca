@@ -30,6 +30,9 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private List<Prestamo> prestamos;
 
+    ///Este booleano sirve para
+    private boolean vendido;
+
     public Libro(String titulo, int anioPublicacion, String isbn, Genero genero, List<Prestamo> prestamos, Autor autor) {
         this.titulo = titulo;
         AnioPublicacion = anioPublicacion;
@@ -88,5 +91,27 @@ public class Libro {
 
     public void setAutor(Autor autor) {
         this.autor = autor;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+
+                    ///METODOS
+
+    public void AgregarPrestamo(Prestamo prestamo) {
+        prestamos.add(prestamo);
     }
 }
