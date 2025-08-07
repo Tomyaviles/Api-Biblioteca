@@ -2,6 +2,7 @@ package com.example.Biblioteca.Model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,7 @@ public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String titulo;
     private int AnioPublicacion;
 
@@ -28,8 +29,8 @@ public class Libro {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
-    private List<Prestamo> prestamos;
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prestamo> prestamos = new ArrayList<>();
 
     ///Este booleano sirve para saber si se vendio
     ///Si es true el libro esta vendido y no se puede manejar mas desde la biblioteca

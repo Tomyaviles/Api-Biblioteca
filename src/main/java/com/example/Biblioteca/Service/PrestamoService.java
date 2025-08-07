@@ -23,19 +23,34 @@ public class PrestamoService implements IPrestamoService {
     private LibroRepository libroRepository;
 
     @Autowired
+    private LibroService libroService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
     @Override
     public void crearPrestamo(Long libroId, Long usuarioId, LocalDate fechaDevolucion) {
         Prestamo prestamo = new Prestamo();
 
+
         ///Seteamos el libro
-        prestamo.setLibro(libroRepository.findById(libroId).orElseThrow(() ->
-                new NoExisteObjectExeption("El libro no existe")));
+        Libro libro = libroService.getLibro(libroId);
+
+
+        prestamo.setLibro(libro);
+
 
         ///Seteamos el usuario
-        prestamo.setUsuario(usuarioRepository.findById(usuarioId).orElseThrow(()->
-                new NoExisteObjectExeption("El usuario no existe")));
+        Usuario usuario = usuarioService.getUsuario(usuarioId);
+
+        prestamo.setUsuario(usuario);
+
+
+
+
 
         ///Seteamos el estado
         Estado estado = Estado.BIEN;
@@ -51,10 +66,18 @@ public class PrestamoService implements IPrestamoService {
         prestamo.setDevolucion(false);
 
         ///Guardamos el prestamo en su repository y se lo modificamos a el usuario y el libro
-        usuarioRepository.findById(usuarioId).get().agregarPrestamo(prestamo);
-        libroRepository.findById(libroId).get().AgregarPrestamo(prestamo);
+        libro.AgregarPrestamo(prestamo);
+        usuario.agregarPrestamo(prestamo);
+
         prestamoRepository.save(prestamo);
+        usuarioRepository.save(usuario);
+        libroRepository.save(libro);
 
 
+
+    }
+
+    public Prestamo getPrestamo(Long idPrestamo) {
+        return prestamoRepository.findById(idPrestamo).get();
     }
 }

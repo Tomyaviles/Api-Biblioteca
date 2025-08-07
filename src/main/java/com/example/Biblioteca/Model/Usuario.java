@@ -10,19 +10,18 @@ import java.util.List;
 public class Usuario extends Persona{
 
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Prestamo> prestamos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prestamo> prestamos = new ArrayList<>();
     private String telefono;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Libro> misLibros;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Libro> misLibros = new ArrayList<>();
 
 
-    public Usuario(String nombre, String apellido, String email, LocalDate fechaNacimiento, Long id) {
+    public Usuario(String nombre, String apellido, String email, LocalDate fechaNacimiento, String telefono) {
         super(nombre, apellido, email, fechaNacimiento);
-        this.prestamos = new ArrayList<>();
-        this.telefono = "";
-        this.misLibros = new ArrayList<>();
+        this.telefono = telefono;
+
     }
 
     public Usuario() {
