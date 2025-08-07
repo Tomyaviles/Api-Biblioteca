@@ -4,6 +4,7 @@ import com.example.Biblioteca.Model.Libro;
 import com.example.Biblioteca.Model.Prestamo;
 import com.example.Biblioteca.Model.Usuario;
 import com.example.Biblioteca.Repository.LibroRepository;
+import com.example.Biblioteca.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,13 @@ public class BibliotecaService implements IBibliotecaService {
     @Autowired
     private PrestamoService prestamoService;
 
+    ///Services de libro y usuario
+    @Autowired
+    private LibroRepository libroRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
 
     @Override
     public void realizarPrestamo(Long usuarioId, Long libroId, LocalDate fechaDevolcion) {
@@ -33,6 +41,18 @@ public class BibliotecaService implements IBibliotecaService {
 
     @Override
     public void venderLibro(Long usuarioId, Long libroId) {
+        Usuario usuario = usuarioService.getUsuario(usuarioId);
+        Libro libro = libroService.getLibro(libroId);
+        libro.isVendido();
+        libro.setUsuario(usuario);
+        usuario.agregarLibro(libro);
+        libroRepository.save(libro);
+        usuarioRepository.save(usuario);
 
+    }
+
+    @Override
+    public void AgregarLibroBiblioteca(Libro libro) {
+        libroService.AgregarLibro(libro);
     }
 }

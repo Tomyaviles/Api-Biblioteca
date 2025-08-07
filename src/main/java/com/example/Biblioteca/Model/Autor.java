@@ -32,4 +32,11 @@ public class Autor extends Persona {
     public void setLibros(List<Libro> libros) {
         this.libros = libros;
     }
+
+                ///Metodos
+
+    public void AgregarLibro(Libro libro)
+    {
+        libros.add(libro);
+    }
 }

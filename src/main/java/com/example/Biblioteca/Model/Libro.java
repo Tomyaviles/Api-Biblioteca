@@ -15,6 +15,7 @@ public class Libro {
 
     private String isbn;
 
+    @Enumerated(EnumType.STRING)
     private Genero genero;
 
     @ManyToOne
@@ -30,12 +31,13 @@ public class Libro {
     @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
     private List<Prestamo> prestamos;
 
-    ///Este booleano sirve para
-    private boolean vendido;
+    ///Este booleano sirve para saber si se vendio
+    ///Si es true el libro esta vendido y no se puede manejar mas desde la biblioteca
+    private boolean vendido = false;
 
     public Libro(String titulo, int anioPublicacion, String isbn, Genero genero, List<Prestamo> prestamos, Autor autor) {
         this.titulo = titulo;
-        AnioPublicacion = anioPublicacion;
+        this.AnioPublicacion = anioPublicacion;
         this.isbn = isbn;
         this.genero = genero;
         this.prestamos = prestamos;
@@ -109,7 +111,20 @@ public class Libro {
         this.prestamos = prestamos;
     }
 
-                    ///METODOS
+    public boolean isVendido() {
+        return vendido;
+    }
+
+    public void LibroVendido()
+    {
+        this.vendido = true;
+    }
+
+    public void setVendido(boolean vendido) {
+        this.vendido = vendido;
+    }
+
+    ///METODOS
 
     public void AgregarPrestamo(Prestamo prestamo) {
         prestamos.add(prestamo);
