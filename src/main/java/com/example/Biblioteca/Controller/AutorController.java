@@ -2,9 +2,11 @@ package com.example.Biblioteca.Controller;
 
 
 import com.example.Biblioteca.Model.Autor;
+import com.example.Biblioteca.Model.DTOs.AutorDTO;
 import com.example.Biblioteca.Model.Libro;
 import com.example.Biblioteca.Repository.AutorRepository;
 import com.example.Biblioteca.Service.AutorService;
+import com.example.Biblioteca.Service.DTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,14 @@ public class AutorController {
     @Autowired
     private AutorService autorService;
 
+    private DTOs dtos;
 
-                ///Solicitudes Post
+    public AutorController(DTOs dtos) {
+        this.dtos = dtos;
+    }
+
+
+    ///Solicitudes Post
 
     @PostMapping("/register")
     public String registrarAutor(@RequestBody Autor autor){
@@ -35,8 +43,11 @@ public class AutorController {
                 ///Solicitudes Get
 
     @GetMapping("/obtener/{idAutor}")
-    public Autor obtenerAutor(@PathVariable Long idAutor){
-        return autorService.getAutorById(idAutor);
+    public AutorDTO obtenerAutor(@PathVariable Long idAutor){
+        Autor autor = autorService.getAutorById(idAutor);
+        AutorDTO autorDTO = dtos.mapAutorDTO(autor);
+
+        return autorDTO;
     }
 
 }
