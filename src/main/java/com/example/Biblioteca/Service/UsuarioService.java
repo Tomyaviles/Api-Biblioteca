@@ -41,4 +41,18 @@ public class UsuarioService implements IUsuarioService {
         usuarioRepository.findById(id).orElseThrow(() -> new NoExisteObjectExeption("El usuario no existe"));
         usuarioRepository.deleteById(id);
     }
+
+    @Override
+    public void DevolverLibro(String isbn, Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+
+        for(int i = 0; i < usuario.getPrestamos().size(); i++){
+            if (usuario.getPrestamos().get(i).getLibro().getIsbn().equals(isbn)){
+                usuario.getPrestamos().get(i).getLibro().disponible();
+                usuario.getPrestamos().get(i).devuelto();
+            }
+        }
+
+
+    }
 }

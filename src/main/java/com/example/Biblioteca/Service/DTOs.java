@@ -54,14 +54,14 @@ public class DTOs {
         usuarioDTO.setNombre(usuario.getNombre());
         usuarioDTO.setEmail(usuario.getEmail());
         usuarioDTO.setApellido(usuario.getApellido());
-        if (usuario.getMisLibros().isEmpty()) {
+        if (!usuario.getMisLibros().isEmpty()) {
             for (Libro libro : usuario.getMisLibros()) {
                 LibroDTO libroDTO = mapLibroDTO(libro);
                 usuarioDTO.AgregarLibro(libroDTO);
             }
         }
 
-        if (usuario.getPrestamos().isEmpty()) {
+        if (!usuario.getPrestamos().isEmpty()) {
             for (Prestamo prestamo : usuario.getPrestamos()) {
                 PrestamoDTO prestamoDTO = mapPrestamoDTO(prestamo);
                 usuarioDTO.AgregarPrestamos(prestamoDTO);
@@ -86,6 +86,7 @@ public class DTOs {
     {
         PrestamoDTO prestamoDTO = new PrestamoDTO();
         prestamoDTO.setFechaDevolucion(prestamo.getFechaDevolucion());
+
         prestamoDTO.setUsuario(prestamo.getUsuario().getNombre());
         prestamoDTO.setTitulolibro(prestamo.getLibro().getTitulo());
         return prestamoDTO;

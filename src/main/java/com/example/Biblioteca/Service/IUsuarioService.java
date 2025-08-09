@@ -14,5 +14,7 @@ public interface IUsuarioService {
     public void ModificarUsuario(Usuario usuario);
     public void EliminarUsuario(Long id);
 
+    public void DevolverLibro(String isbn, Long idUsuario);
+
 
 }

@@ -62,4 +62,11 @@ public class UsuarioController {
 
 
                     ///Solicitudes PUT
+
+    @PutMapping("/devolver")
+    public String devolverUsuario(@RequestParam Long id,
+                                  @RequestParam String isbn) {
+        usuarioService.DevolverLibro(isbn, id);
+        return "Libro devuelto con exitp, Muchisimas Gracias!";
+    }
 }

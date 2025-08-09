@@ -22,7 +22,7 @@ public class Prestamo {
     @JoinColumn(name = "libro_id")
     private Libro libro;
 
-    private boolean devolucion;
+    private boolean devolucion = false;
     private Estado estado;
 
     public Prestamo(LocalDate fechPrestamo, LocalDate fechaDevolucion, Usuario usuario, Libro libro, boolean devolucion, Estado estado) {
@@ -99,4 +99,15 @@ public class Prestamo {
 
 
                     ///METODOS
+
+
+    public void devuelto()
+    {
+        if (devolucion)
+        {
+            devolucion = false;
+        }else {
+            devolucion = true;
+        }
+    }
 }

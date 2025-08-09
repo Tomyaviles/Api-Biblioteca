@@ -69,6 +69,10 @@ public class PrestamoService implements IPrestamoService {
         libro.AgregarPrestamo(prestamo);
         usuario.agregarPrestamo(prestamo);
 
+
+        ///Cambiamos el estado del libro para dejarlo en false como que no esta disponible
+        libro.disponible();
+
         prestamoRepository.save(prestamo);
         usuarioRepository.save(usuario);
         libroRepository.save(libro);

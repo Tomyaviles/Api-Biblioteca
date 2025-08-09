@@ -14,6 +14,7 @@ public class Libro {
     private String titulo;
     private int AnioPublicacion;
 
+    @Column(unique = true, nullable = false)
     private String isbn;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +36,9 @@ public class Libro {
     ///Este booleano sirve para saber si se vendio
     ///Si es true el libro esta vendido y no se puede manejar mas desde la biblioteca
     private boolean vendido = false;
+
+    ///Este es para saber si esta siendo prestado o ya fue devuelto
+    private boolean disponible = true;
 
     public Libro(String titulo, int anioPublicacion, String isbn, Genero genero, List<Prestamo> prestamos, Autor autor) {
         this.titulo = titulo;
@@ -67,6 +71,7 @@ public class Libro {
     public int getAnioPublicacion() {
         return AnioPublicacion;
     }
+
 
     public void setAnioPublicacion(int anioPublicacion) {
         AnioPublicacion = anioPublicacion;
@@ -125,9 +130,32 @@ public class Libro {
         this.vendido = vendido;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     ///METODOS
 
     public void AgregarPrestamo(Prestamo prestamo) {
         prestamos.add(prestamo);
+    }
+
+    public void disponible()
+    {
+        if (disponible)
+        {
+            disponible = false;
+        }
+        else {
+            disponible = true;
+        }
     }
 }
