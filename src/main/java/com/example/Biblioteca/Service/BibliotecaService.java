@@ -55,13 +55,14 @@ public class BibliotecaService implements IBibliotecaService {
 
     @Override
     public List<Libro> FiltrarPorAutor(Long idAutor) {
-        List<Libro> libros = libroService.getLibros();
-        List<Libro> librosFiltrados = new ArrayList<>();
+        List<Libro> librosFiltrados = libroRepository.findByAutorId(idAutor);
+                /*
         for (Libro libro : libros) {
             if (libro.getAutor().getId() == idAutor) {
                 librosFiltrados.add(libro);
+                System.out.println(libro.getTitulo());
             }
-        }
+        }*/
 
         return librosFiltrados;
     }

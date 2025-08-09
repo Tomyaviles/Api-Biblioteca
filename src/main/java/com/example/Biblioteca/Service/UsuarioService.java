@@ -1,6 +1,8 @@
 package com.example.Biblioteca.Service;
 
 import com.example.Biblioteca.Exceptions.NoExisteObjectExeption;
+import com.example.Biblioteca.Model.Libro;
+import com.example.Biblioteca.Model.Prestamo;
 import com.example.Biblioteca.Model.Usuario;
 import com.example.Biblioteca.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,24 @@ public class UsuarioService implements IUsuarioService {
             }
         }
 
+    }
 
+
+    @Override
+    public List<Libro> misLibros(Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+
+        List<Libro> misLibros = usuario.getMisLibros();
+
+        return misLibros;
+    }
+
+    @Override
+    public List<Prestamo> misPrestamos(Long idUsuario) {
+        Usuario usuario = usuarioRepository.findById(idUsuario).get();
+
+        List<Prestamo> misPrestamos = usuario.getPrestamos();
+
+        return misPrestamos;
     }
 }
