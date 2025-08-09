@@ -61,4 +61,11 @@ public class AutorController {
         return autorsDTO;
     }
 
+                ///Solicitudes Delete
+
+    @DeleteMapping("/delete/{id}")
+    public String eliminarAutor(@PathVariable Long id){
+
+        return "Autor eliminado con exito";
+    }
 }

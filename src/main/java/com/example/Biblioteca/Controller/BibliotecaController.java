@@ -72,6 +72,15 @@ public class BibliotecaController {
         return prestamoService.getPrestamo(idPrestamo);
     }
 
+    @GetMapping("/filtrarAutor/{idAutor}")
+    public List<LibroDTO> filtrarAutor(@PathVariable Long idAutor)
+    {
+        List<Libro> libros = bibliotecaService.FiltrarPorAutor(idAutor);
+        List<LibroDTO> librosDtos = dtos.mapLibrosDTO(libros);
+
+        return librosDtos;
+    }
+
                     ///Solicitudes Put
 
     @PutMapping("/vender")

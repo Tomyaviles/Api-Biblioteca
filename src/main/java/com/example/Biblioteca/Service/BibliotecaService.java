@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BibliotecaService implements IBibliotecaService {
@@ -49,6 +51,19 @@ public class BibliotecaService implements IBibliotecaService {
         libroRepository.save(libro);
         usuarioRepository.save(usuario);
 
+    }
+
+    @Override
+    public List<Libro> FiltrarPorAutor(Long idAutor) {
+        List<Libro> libros = libroService.getLibros();
+        List<Libro> librosFiltrados = new ArrayList<>();
+        for (Libro libro : libros) {
+            if (libro.getAutor().getId() == idAutor) {
+                librosFiltrados.add(libro);
+            }
+        }
+
+        return librosFiltrados;
     }
 
     @Override

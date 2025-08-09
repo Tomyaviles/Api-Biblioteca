@@ -67,6 +67,6 @@ public class UsuarioController {
     public String devolverUsuario(@RequestParam Long id,
                                   @RequestParam String isbn) {
         usuarioService.DevolverLibro(isbn, id);
-        return "Libro devuelto con exitp, Muchisimas Gracias!";
+        return "Libro devuelto con exito, Muchisimas Gracias!";
     }
 }

@@ -3,6 +3,7 @@ package com.example.Biblioteca.Service;
 import com.example.Biblioteca.Model.Libro;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface IBibliotecaService {
 
@@ -11,7 +12,7 @@ public interface IBibliotecaService {
 
     public void venderLibro(Long usuarioId, String isbn);
 
-
+    public List<Libro> FiltrarPorAutor(Long idAutor);
     public void AgregarLibroBiblioteca(Libro libro);
 
 }
