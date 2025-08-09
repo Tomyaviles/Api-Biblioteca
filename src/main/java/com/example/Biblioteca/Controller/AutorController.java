@@ -10,6 +10,8 @@ import com.example.Biblioteca.Service.DTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/autor")
 public class AutorController {
@@ -48,6 +50,15 @@ public class AutorController {
         AutorDTO autorDTO = dtos.mapAutorDTO(autor);
 
         return autorDTO;
+    }
+
+    @GetMapping("/todos")
+    public List<AutorDTO> obtenerTodosLosAutores()
+    {
+        List<Autor> autors = autorService.getAllAutors();
+        List<AutorDTO> autorsDTO = dtos.mapAutoresDTO(autors);
+
+        return autorsDTO;
     }
 
 }

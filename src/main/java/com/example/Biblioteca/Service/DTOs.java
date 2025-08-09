@@ -33,6 +33,14 @@ public class DTOs {
         return autorDTO;
     }
 
+    public List<AutorDTO> mapAutoresDTO(List<Autor> autores){
+        List<AutorDTO> autoresDTO = new ArrayList<>();
+        for (Autor autor : autores){
+            autoresDTO.add(mapAutorDTO(autor));
+        }
+        return autoresDTO;
+    }
+
                     ///LIBRO
 
     public LibroDTO mapLibroDTO(Libro libro){
@@ -44,6 +52,15 @@ public class DTOs {
         libroDTO.setGenero(libro.getGenero());
 
         return libroDTO;
+    }
+
+
+    public List<LibroDTO> mapLibrosDTO(List<Libro> libros){
+        List<LibroDTO> librosDTO = new ArrayList<>();
+        for (Libro libro : libros){
+            librosDTO.add(mapLibroDTO(libro));
+        }
+        return librosDTO;
     }
 
 

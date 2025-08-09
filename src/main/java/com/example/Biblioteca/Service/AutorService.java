@@ -6,6 +6,8 @@ import com.example.Biblioteca.Repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AutorService implements IAutorService {
 
@@ -35,5 +37,11 @@ public class AutorService implements IAutorService {
     @Override
     public Autor getAutorById(Long id) {
         return autorRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Autor> getAllAutors() {
+        List<Autor> autors = autorRepository.findAll();
+        return autors;
     }
 }

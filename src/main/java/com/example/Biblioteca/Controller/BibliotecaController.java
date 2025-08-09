@@ -1,15 +1,19 @@
 package com.example.Biblioteca.Controller;
 
 
+import com.example.Biblioteca.Model.DTOs.LibroDTO;
 import com.example.Biblioteca.Model.Libro;
 import com.example.Biblioteca.Model.Prestamo;
 import com.example.Biblioteca.Service.BibliotecaService;
+import com.example.Biblioteca.Service.DTOs;
 import com.example.Biblioteca.Service.LibroService;
 import com.example.Biblioteca.Service.PrestamoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/biblioteca")
@@ -25,7 +29,13 @@ public class BibliotecaController {
     @Autowired
     private PrestamoService prestamoService;
 
-                    ///Solicitudes Post
+    private DTOs dtos;
+
+    public BibliotecaController(DTOs dtos) {
+        this.dtos = dtos;
+    }
+
+    ///Solicitudes Post
    @PostMapping("/realizarPrestamo")
    public String realizarPrestamo(@RequestParam Long idLibro,
                                   @RequestParam Long idUsuario,
@@ -36,10 +46,24 @@ public class BibliotecaController {
    }
 
 
+
+                ///Solicitudes Get
     @GetMapping("/consultarLibro/{idLibro}")
-    public Libro consultarLibro(@PathVariable Long idLibro)
+    public LibroDTO consultarLibro(@PathVariable Long idLibro)
     {
-       return libroService.getLibro(idLibro);
+       Libro libro = libroService.getLibro(idLibro);
+       LibroDTO dto = dtos.mapLibroDTO(libro);
+       return dto;
+    }
+
+    @GetMapping("/todos")
+    public List<LibroDTO> traerTodos()
+    {
+        List<Libro> libros = libroService.getLibros();
+        List<LibroDTO> libroDTOs = dtos.mapLibrosDTO(libros);
+
+        return libroDTOs;
+
     }
 
     @GetMapping("/prestamos/{idPrestamo}")
