@@ -33,7 +33,7 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public void ModificarUsuario(Usuario usuario) {
-        System.out.println("No funciona");
+
     }
 
     @Override
