@@ -54,4 +54,18 @@ public class LibroService implements ILibroServie {
 
         libroRepository.deleteById(id);
     }
+
+
+    public Libro getLibroIsbn(String isbn)
+    {
+        for(int i = 0; i < libroRepository.findAll().size(); i++)
+        {
+            for (Libro libro : libroRepository.findAll())
+            {
+                if (libro.getIsbn().equals(isbn))
+                    return libro;
+            }
+        }
+        return null;
+    }
 }

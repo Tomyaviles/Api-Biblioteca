@@ -158,4 +158,15 @@ public class Libro {
             disponible = true;
         }
     }
+
+
+    public void vendido()
+    {
+        if (!vendido)
+        {
+            vendido = true;
+        }else{
+            vendido = false;
+        }
+    }
 }

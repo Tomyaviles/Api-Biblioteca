@@ -9,7 +9,7 @@ public interface IBibliotecaService {
 
     public void realizarPrestamo(Long usuarioId, Long libroId, LocalDate fechaDevolucion);
 
-    public void venderLibro(Long usuarioId, Long libroId);
+    public void venderLibro(Long usuarioId, String isbn);
 
 
     public void AgregarLibroBiblioteca(Libro libro);

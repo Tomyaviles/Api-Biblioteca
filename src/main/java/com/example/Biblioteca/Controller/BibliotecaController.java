@@ -48,4 +48,14 @@ public class BibliotecaController {
         return prestamoService.getPrestamo(idPrestamo);
     }
 
+                    ///Solicitudes Put
+
+    @PutMapping("/vender")
+    public String venderLibro(@RequestParam String isbn,
+                              @RequestParam Long id)
+    {
+        bibliotecaService.venderLibro(id, isbn);
+        return  "Libro vendido con exito, Gracias por su compra";
+    }
+
 }

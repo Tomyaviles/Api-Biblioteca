@@ -40,10 +40,10 @@ public class BibliotecaService implements IBibliotecaService {
     }
 
     @Override
-    public void venderLibro(Long usuarioId, Long libroId) {
+    public void venderLibro(Long usuarioId, String isbn) {
         Usuario usuario = usuarioService.getUsuario(usuarioId);
-        Libro libro = libroService.getLibro(libroId);
-        libro.isVendido();
+        Libro libro = libroService.getLibroIsbn(isbn);
+        libro.vendido();
         libro.setUsuario(usuario);
         usuario.agregarLibro(libro);
         libroRepository.save(libro);
