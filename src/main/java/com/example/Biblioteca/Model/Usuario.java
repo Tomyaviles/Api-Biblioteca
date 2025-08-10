@@ -14,6 +14,8 @@ public class Usuario extends Persona{
     private List<Prestamo> prestamos = new ArrayList<>();
     private String telefono;
 
+    private String password;
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Libro> misLibros = new ArrayList<>();
 
@@ -57,6 +59,14 @@ public class Usuario extends Persona{
 
     public void setMisLibros(List<Libro> misLibros) {
         this.misLibros = misLibros;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     ///METODOS
